@@ -12,6 +12,8 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.web.client.RestTemplate;
 
 import com.bridgelabz.bookstore.model.Book;
+import com.bridgelabz.bookstore.model.OrderDetails;
+import com.bridgelabz.bookstore.util.JwtToken;
 
 
 
@@ -25,6 +27,10 @@ public class AppConfig {
 	public Book book()
 	{
 		return new Book();
+	}
+	@Bean
+	public OrderDetails orderDetails() {
+		return new OrderDetails();
 	}
 	@Bean
 	public ModelMapper modelMapper() {
@@ -45,6 +51,12 @@ public class AppConfig {
 		return messageSourceAccessor;
 	}
 	
+	
+	@Bean
+	public JwtToken jwttoken()
+	{
+		return new JwtToken();
+	}
 	@Bean
     public RestTemplate restTemplate() {
 		return new  RestTemplate();

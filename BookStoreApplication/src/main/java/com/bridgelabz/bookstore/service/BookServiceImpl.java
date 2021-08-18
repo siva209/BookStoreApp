@@ -17,6 +17,7 @@ import com.bridgelabz.bookstore.exception.InvalidBookDetailsException;
 import com.bridgelabz.bookstore.model.Book;
 import com.bridgelabz.bookstore.repository.BookRepository;
 import com.bridgelabz.bookstore.response.Response;
+
 @Service
 public class BookServiceImpl implements IBookService{
 	
@@ -29,7 +30,7 @@ public class BookServiceImpl implements IBookService{
 	@Autowired
 	private BookRepository bookRepo;
 	
-
+   
 	@Override
 	public Response createBook(String token,BookDto bookDto) {
 		Book verify = restTemplate.getForObject("http://localhost:9091/verifyemail/"+token, Book.class);
@@ -118,4 +119,25 @@ public class BookServiceImpl implements IBookService{
 		throw new InvalidBookDetailsException(AppConfig.getMessageAccessor().getMessage("105"),null,400,"true");
 	}
 	}
+
+
+	@Override
+	public Response deleteBookById(String token, Long id) throws InvalidBookDetailsException {
+		Book verify = restTemplate.getForObject("http://localhost:9091/verifyemail/"+token, Book.class);
+		System.out.println("Value="+verify);
+		if(verify != null) {
+			Optional<Book> isUserPresent = bookRepo.findById(id);
+			if (isUserPresent.isPresent()) {
+				bookRepo.deleteById(id);
+				return new Response(AppConfig.getMessageAccessor().getMessage("6"),isUserPresent,200,"true");
+			} else {
+				throw new InvalidBookDetailsException(AppConfig.getMessageAccessor().getMessage("106"),null,400,"true");
+			}
+		}
+			else {
+				throw new InvalidBookDetailsException(AppConfig.getMessageAccessor().getMessage("106"),null,400,"true");
+			}
+		}
 	}
+
+	

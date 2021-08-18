@@ -1,5 +1,7 @@
 package com.bridgelabz.bookstore.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,4 +23,5 @@ public class Book {
 	private String BookLogo;
 	private double BookPrice;
 	private int BookQuantity;
+
 }

@@ -21,6 +21,9 @@ public class Response {
 		public Response(String string, Long id) {
 			// TODO Auto-generated constructor stub
 		}
+		public Response(int i, String string, Object object) {
+			// TODO Auto-generated constructor stub
+		}
 }
 
 

@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionHandling{
 	
-	@ExceptionHandler(InvalidBookDetailsException.class)
-	public ResponseEntity<ExceptionResponse> userCustomExceptions(InvalidBookDetailsException ex)
+	@ExceptionHandler(InvalidOrderDetailsException.class)
+	public ResponseEntity<ExceptionResponse> userCustomExceptions(InvalidOrderDetailsException ex)
 	{
 		ExceptionResponse res=new ExceptionResponse();
 		res.setMessage(ex.getMessage());
